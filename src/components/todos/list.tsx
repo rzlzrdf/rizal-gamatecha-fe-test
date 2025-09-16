@@ -10,11 +10,16 @@ import { TodoCard } from './card';
 export interface TodoListProps {}
 
 export function TodoList(_: TodoListProps) {
-  const { todos } = useGetTodos();
+  const { todos, dataLoading } = useGetTodos();
   const deferredTodos = useDeferredValue(todos);
 
   const { move } = useMoveTodo();
   const { remove } = useRemoveTodo();
+  if(dataLoading) return (
+    <div className="max-w-[500px] min-h-[300px] w-full p-2 space-y-2 border border-gray-100 grid place-content-center">
+      <p>Loading...</p>
+    </div>
+  )
 
   return (
     <div className="max-w-[500px] w-full p-2 space-y-2 border border-gray-100">

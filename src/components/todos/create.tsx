@@ -10,13 +10,12 @@ export function TodoCreate() {
     resolver: zodResolver(todoSchema),
   });
 
-  const { create } = useCreateTodo();
+  const { create, pending } = useCreateTodo(form);
 
   const onSubmit = (data: TodoSchemaType) => {
     /**
      * @todo: Add the functionality to reset the form if the todo is created successfully
      */
-
     create(data);
   };
 
@@ -38,10 +37,12 @@ export function TodoCreate() {
             {...form.register('description')}
           />
 
+
           <div className="flex justify-end">
             <button
               type="submit"
-              className="px-3 py-2 bg-gray-200 text-sm hover:bg-gray-300 cursor-pointer active:scale-95 w-fit transition-transform duration-150 rounded-sm flex gap-x-2 items-center"
+              disabled={pending && !!form.formState.errors}
+              className="px-3 py-2 bg-gray-200 text-sm hover:bg-gray-300 cursor-pointer active:scale-95 w-fit transition-transform duration-150 rounded-sm flex gap-x-2 items-center disabled:bg-white disabled:cursor-none"
             >
               💾 <span>Save</span>
             </button>

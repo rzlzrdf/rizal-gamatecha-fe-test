@@ -8,7 +8,7 @@ import { todoSchema } from '~/schemas/todo';
 import { getTodos, replaceTodos } from './utils';
 
 export async function GET() {
-  await new Promise((resolve) => setTimeout(resolve, 1000));
+  await new Promise((resolve) => setTimeout(resolve, 250));
 
   const todos = await getTodos();
 

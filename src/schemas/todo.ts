@@ -6,8 +6,8 @@ export const todoSchema = z.object({
    * - Title: required, min 3 characters, max 20 characters
    * - Description: required, min 3 characters, max 100 characters
    */
-  title: z.string(),
-  description: z.string(),
+  title: z.string().min(3,"Min char is 3").max(20, "Max char is 20"),
+  description: z.string().min(3,"Min char is 3").max(100, "Max char is 20"),
 });
 
 export type TodoSchemaType = z.infer<typeof todoSchema>;
